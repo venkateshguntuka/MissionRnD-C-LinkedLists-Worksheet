@@ -18,7 +18,27 @@ struct node {
 	int num;
 	struct node *next;
 };
-
+struct node* Insert(int rem, struct node* head)
+{
+	struct node* temp = (struct node*)malloc(sizeof(struct node));
+	temp->num = rem;
+	temp->next = NULL;
+	if (head != NULL)
+		temp->next= head;
+	head = temp;
+	return head;
+}
 struct node * numberToLinkedList(int N) {
-	return NULL;
+	struct node* head = NULL;
+	N = (N >= 0) ? N : -N;//abs implementation
+	int rem;
+	if (N == 0)
+		head=Insert(N, head);
+		while (N > 0)
+		{
+			rem = N % 10;
+			N = N / 10;
+			head = Insert(rem, head);
+		}
+	return head;
 }
